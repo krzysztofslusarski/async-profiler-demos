@@ -10,18 +10,17 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/examples/wall")
 @RequiredArgsConstructor
 class WallController {
-    private final RestTemplate pool20RestTemplate;
-    private final RestTemplate pool3RestTemplate;
+    private final WallService wallService;
 
     @GetMapping("/first")
     String first() {
-        pool20RestTemplate.getForObject("http://localhost:8079/examples/wall/slow", String.class);
+        wallService.calculateAndExecuteSlow();
         return "OK";
     }
 
     @GetMapping("/second")
     String second() {
-        pool3RestTemplate.getForObject("http://localhost:8079/examples/wall/fast", String.class);
+        wallService.calculateAndExecuteFast();
         return "OK";
     }
 }

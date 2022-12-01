@@ -11,7 +11,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-class FirstConfiguration {
+class FirstApplicationConfiguration {
     @Bean("pool20RestTemplate")
     RestTemplate pool20RestTemplate() {
         return createRestTemplate(20);
