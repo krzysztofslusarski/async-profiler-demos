@@ -1,4 +1,4 @@
-package com.example.secondapplication.examples.context;
+package com.example.thirdapplication.examples.context;
 
 import com.example.common.AsyncProfilerObservationHandler;
 import io.micrometer.observation.ObservationRegistry;
@@ -14,5 +14,10 @@ class ContextConfiguration {
     ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
         observationRegistry.observationConfig().observationHandler(new AsyncProfilerObservationHandler());
         return new ObservedAspect(observationRegistry);
+    }
+
+    @Bean
+    ContextService contextService() {
+        return new ContextService();
     }
 }
