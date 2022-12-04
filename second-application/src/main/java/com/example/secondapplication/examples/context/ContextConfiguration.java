@@ -1,5 +1,6 @@
 package com.example.secondapplication.examples.context;
 
+import com.example.common.AsyncProfilerObservationHandler;
 import io.micrometer.observation.ObservationRegistry;
 import io.micrometer.observation.aop.ObservedAspect;
 import lombok.RequiredArgsConstructor;
