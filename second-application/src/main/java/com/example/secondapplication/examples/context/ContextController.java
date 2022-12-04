@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/examples/context")
 @RequiredArgsConstructor
 class ContextController {
+    private final ContextService contextService;
+
     @GetMapping("/do-something")
-    String get() throws InterruptedException {
-        Thread.sleep(1000);
+    String doSomething() throws InterruptedException {
+        contextService.doSomething();
         return "OK";
     }
 

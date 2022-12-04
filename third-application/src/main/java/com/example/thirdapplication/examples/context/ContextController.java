@@ -18,7 +18,7 @@ class ContextController {
     private final ContextService contextService;
 
     @GetMapping("/do-something")
-    String get() throws InterruptedException {
+    String doSomething() throws InterruptedException {
         contextService.doSomething();
         return "OK";
     }

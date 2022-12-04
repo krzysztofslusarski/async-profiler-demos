@@ -1,10 +1,12 @@
 package com.example.firstapplication;
 
+import ch.qos.logback.access.tomcat.LogbackValve;
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -28,6 +30,13 @@ class FirstApplicationConfiguration {
     @Bean("genericRestTemplate")
     RestTemplate genericRestTemplate(RestTemplateBuilder builder) {
         return builder.build();
+    }
+
+    @Bean
+    TomcatServletWebServerFactory servletContainer() {
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+        tomcat.addContextValves(new LogbackValve());
+        return tomcat;
     }
 
     private static RestTemplate createRestTemplate(int max) {

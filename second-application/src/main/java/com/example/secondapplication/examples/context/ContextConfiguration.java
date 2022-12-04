@@ -15,4 +15,9 @@ class ContextConfiguration {
         observationRegistry.observationConfig().observationHandler(new AsyncProfilerObservationHandler());
         return new ObservedAspect(observationRegistry);
     }
+
+    @Bean
+    ContextService contextService() {
+        return new ContextService();
+    }
 }
