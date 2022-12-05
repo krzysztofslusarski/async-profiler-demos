@@ -6,6 +6,7 @@ import io.micrometer.observation.aop.ObservedAspect;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
@@ -14,6 +15,7 @@ class ContextConfiguration {
     private final RestTemplate genericRestTemplate;
 
     @Bean
+    @Profile("context")
     ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
         observationRegistry.observationConfig().observationHandler(new AsyncProfilerObservationHandler());
         return new ObservedAspect(observationRegistry);

@@ -3,7 +3,7 @@
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%t [%r] [%s] [%D ms] [%I]</pattern>
+            <pattern>[%t] [%r] [%s] [%D ms] [%I]</pattern>
         </encoder>
     </appender>
 
