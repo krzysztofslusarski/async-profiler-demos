@@ -1,4 +1,4 @@
-package com.example.firstapplication.examples.cpu;
+package com.example.firstapplication.examples.leak;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,8 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "aKey")
-public class SampleConfiguration {
+public class LeakyEntity {
     @Id
-    private String aKey;
+    private Integer aKey;
     private String aValue;
 }
