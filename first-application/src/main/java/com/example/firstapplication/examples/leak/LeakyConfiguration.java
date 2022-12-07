@@ -13,6 +13,6 @@ class LeakyConfiguration {
 
     @Bean
     LeakyService leakyService() {
-        return new LeakyService(leakyEntityRepository, jdbcTemplate);
+        return new LeakyService(leakyEntityRepository, jdbcTemplate, new JdbcQueryProfiler());
     }
 }
