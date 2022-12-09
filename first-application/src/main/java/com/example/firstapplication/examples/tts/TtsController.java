@@ -11,9 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 class TtsController {
     private final TtsService ttsService;
 
-    @GetMapping("/")
-    String doSomething() {
-        ttsService.doSomething();
+    @GetMapping("/start")
+    String start    () {
+        ttsService.startThread();
+        return "OK";
+    }
+
+    @GetMapping("/execute")
+    String execute() {
+        ttsService.execute();
         return "OK";
     }
 }

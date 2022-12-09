@@ -1,9 +1,9 @@
 package com.example.firstapplication.examples.tts;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.SneakyThrows;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 class TtsService {
     private static final int LENGTH = 1024 * 1024 * 250;
@@ -30,11 +30,12 @@ class TtsService {
         }
     });
 
-    private byte[] firstArray = new byte[LENGTH];
-    private byte[] secondArray = new byte[LENGTH];
+    private volatile byte[] firstArray = new byte[LENGTH];
+    private volatile byte[] secondArray = new byte[LENGTH];
 
-    @PostConstruct
     void startThread() {
+        firstArray = new byte[LENGTH];
+        secondArray = new byte[LENGTH];
         safepointThread.start();
     }
 
@@ -44,7 +45,7 @@ class TtsService {
     }
 
     @SneakyThrows
-    void doSomething() {
+    void execute() {
         doSafepoints.set(true);
         synchronized (doSafepoints) {
             doSafepoints.notifyAll();
