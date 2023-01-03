@@ -1,6 +1,5 @@
 package com.example.firstapplication;
 
-import ch.qos.logback.access.tomcat.LogbackValve;
 import org.apache.catalina.filters.RemoteIpFilter;
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.config.RequestConfig;
@@ -46,7 +45,7 @@ class FirstApplicationConfiguration {
     @Bean
     TomcatServletWebServerFactory servletContainer() {
         TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
-        tomcat.addContextValves(new LogbackValve());
+//        tomcat.addContextValves(new LogbackValve());
         return tomcat;
     }
 
