@@ -1,7 +1,8 @@
 package com.example.firstapplication.examples.os.quest;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.commons.lang3.RandomStringUtils;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 class QuectCpuClassesService {
     private static final int COUNT = 10000;
@@ -20,6 +21,17 @@ class QuectCpuClassesService {
             currentVal += hashCodeMega(charSequence2);
             currentVal += hashCodeMega(charSequence3);
             currentVal += hashCodeMega(charSequence4);
+        }
+        return currentVal;
+    }
+
+    int megamorphicHacked() {
+        int currentVal = counter.incrementAndGet();
+        for (int i = 0; i < COUNT; i++) {
+            currentVal += hashCodeHacked(charSequence1);
+            currentVal += hashCodeHacked(charSequence2);
+            currentVal += hashCodeHacked(charSequence3);
+            currentVal += hashCodeHacked(charSequence4);
         }
         return currentVal;
     }
@@ -54,6 +66,33 @@ class QuectCpuClassesService {
         int h = 0;
         for (int p = 0; p < len; p++) {
             h = 31 * h + value.charAt(p);
+        }
+        return h;
+    }
+
+    private static int hashCodeHacked(AbstractCharSequence value) {
+        int valueClassHashCode = value.getClass().hashCode() & 3;
+        int len = switch (valueClassHashCode) {
+            case 0 -> value.length();
+            case 1 -> value.length();
+            case 2 -> value.length();
+            case 3 -> value.length();
+            default -> throw new IllegalStateException("Unexpected value: " + valueClassHashCode);
+        };
+
+        if (len == 0) {
+            return 0;
+        }
+
+        int h = 0;
+        for (int p = 0; p < len; p++) {
+            h = switch (valueClassHashCode) {
+                case 0 -> 31 * h + value.charAt(p);
+                case 1 -> 31 * h + value.charAt(p);
+                case 2 -> 31 * h + value.charAt(p);
+                case 3 -> 31 * h + value.charAt(p);
+                default -> throw new IllegalStateException("Unexpected value: " + valueClassHashCode);
+            };
         }
         return h;
     }

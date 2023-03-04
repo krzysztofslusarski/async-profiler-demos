@@ -1,17 +1,25 @@
 package com.example.firstapplication.examples.os.quest;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.commons.lang3.RandomStringUtils;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 class QuectCpuInterfaceService {
     private static final int COUNT = 10000;
 
+    public static void main(String[] args) {
+        System.out.println(CharSeqFirstImpl.class.hashCode() & 127);
+        System.out.println(CharSeqSecondImpl.class.hashCode() & 127);
+        System.out.println(CharSeqThirdImpl.class.hashCode() & 127);
+        System.out.println(CharSeqForthImpl.class.hashCode() & 127);
+    }
+
     private final AtomicInteger counter = new AtomicInteger();
 
-    private final QuectCpuInterfaceService.CharSeqFirstImpl charSequence1 = new QuectCpuInterfaceService.CharSeqFirstImpl(RandomStringUtils.random(100));
-    private final QuectCpuInterfaceService.CharSeqSecondImpl charSequence2 = new QuectCpuInterfaceService.CharSeqSecondImpl(charSequence1.toString());
-    private final QuectCpuInterfaceService.CharSeqThirdImpl charSequence3 = new QuectCpuInterfaceService.CharSeqThirdImpl(charSequence1.toString());
-    private final QuectCpuInterfaceService.CharSeqForthImpl charSequence4 = new QuectCpuInterfaceService.CharSeqForthImpl(charSequence1.toString());
+    private final CharSeqFirstImpl charSequence1 = new CharSeqFirstImpl(RandomStringUtils.random(100));
+    private final CharSeqSecondImpl charSequence2 = new CharSeqSecondImpl(charSequence1.toString());
+    private final CharSeqThirdImpl charSequence3 = new CharSeqThirdImpl(charSequence1.toString());
+    private final CharSeqForthImpl charSequence4 = new CharSeqForthImpl(charSequence1.toString());
 
     int megamorphic() {
         int currentVal = counter.incrementAndGet();
@@ -20,6 +28,17 @@ class QuectCpuInterfaceService {
             currentVal += hashCodeMega(charSequence2);
             currentVal += hashCodeMega(charSequence3);
             currentVal += hashCodeMega(charSequence4);
+        }
+        return currentVal;
+    }
+
+    int megamorphicHacked() {
+        int currentVal = counter.incrementAndGet();
+        for (int i = 0; i < COUNT; i++) {
+            currentVal += hashCodeHacked(charSequence1);
+            currentVal += hashCodeHacked(charSequence2);
+            currentVal += hashCodeHacked(charSequence3);
+            currentVal += hashCodeHacked(charSequence4);
         }
         return currentVal;
     }
@@ -54,6 +73,33 @@ class QuectCpuInterfaceService {
         int h = 0;
         for (int p = 0; p < len; p++) {
             h = 31 * h + value.charAt(p);
+        }
+        return h;
+    }
+
+    private static int hashCodeHacked(CharSequence value) {
+        int valueClassHashCode = value.getClass().hashCode() & 127;
+        int len = switch (valueClassHashCode) {
+            case 2 -> value.length();
+            case 9 -> value.length();
+            case 65 -> value.length();
+            case 73 -> value.length();
+            default -> throw new IllegalStateException("Unexpected value: " + valueClassHashCode);
+        };
+
+        if (len == 0) {
+            return 0;
+        }
+
+        int h = 0;
+        for (int p = 0; p < len; p++) {
+            h = switch (valueClassHashCode) {
+                case 2 -> 31 * h + value.charAt(p);
+                case 9 -> 31 * h + value.charAt(p);
+                case 65 -> 31 * h + value.charAt(p);
+                case 73 -> 31 * h + value.charAt(p);
+                default -> throw new IllegalStateException("Unexpected value: " + valueClassHashCode);
+            };
         }
         return h;
     }

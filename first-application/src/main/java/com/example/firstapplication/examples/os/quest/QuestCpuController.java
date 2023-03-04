@@ -17,6 +17,11 @@ class QuestCpuController {
         return String.valueOf(interfaceService.megamorphic());
     }
 
+    @GetMapping("/interface/megamorphic-hacked")
+    String interfaceMegamorphicHacked() {
+        return String.valueOf(interfaceService.megamorphicHacked());
+    }
+
     @GetMapping("/interface/megamorphic-type-check")
     String interfaceMegamorphicTypeCheck() {
         return String.valueOf(interfaceService.megamorphicTypeCheck());
@@ -30,6 +35,11 @@ class QuestCpuController {
     @GetMapping("/classes/megamorphic")
     String classesMegamorphic() {
         return String.valueOf(classesService.megamorphic());
+    }
+
+    @GetMapping("/classes/megamorphic-hacked")
+    String classesMegamorphicHacked() {
+        return String.valueOf(classesService.megamorphicHacked());
     }
 
     @GetMapping("/classes/megamorphic-type-check")
