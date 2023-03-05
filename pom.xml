@@ -24,6 +24,10 @@
 			<version>1.34</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-access</artifactId>
+		</dependency>
 	</dependencies>
 
 	<groupId>pl.ks</groupId>
