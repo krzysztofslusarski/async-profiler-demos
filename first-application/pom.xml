@@ -83,6 +83,14 @@
             <groupId>pl.ks</groupId>
             <artifactId>common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk.crt</groupId>
+            <artifactId>aws-crt</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
