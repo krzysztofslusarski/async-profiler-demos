@@ -13,7 +13,7 @@ class AwsController {
 
     @GetMapping("/upload")
     String upload() {
-        awsService.createNewBuffer();
+        awsService.upload();
         return "OK";
     }
 }

@@ -22,7 +22,7 @@ class AwsService {
     private static final String SECRET_ACCESS_KEY = "test";
 
     @SneakyThrows
-    void createNewBuffer() {
+    void upload() {
         S3CrtAsyncClientBuilder s3CrtAsyncClientBuilder = S3AsyncClient.crtBuilder()
                 .endpointOverride(new URI("http://127.0.0.1:4566"))
                 .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(ACCESS_KEY_ID, SECRET_ACCESS_KEY)))
