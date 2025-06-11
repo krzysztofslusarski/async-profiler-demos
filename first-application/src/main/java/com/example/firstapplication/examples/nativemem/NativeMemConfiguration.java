@@ -14,4 +14,9 @@ class NativeMemConfiguration {
     AwsService awsService() {
         return new AwsService();
     }
+
+    @Bean
+    MallocService mallocService() {
+        return new MallocService();
+    }
 }
