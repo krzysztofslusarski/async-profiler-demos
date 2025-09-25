@@ -14,6 +14,7 @@
 		<module>first-application</module>
 		<module>second-application</module>
         <module>common</module>
+        <module>class-leak</module>
         <module>third-application</module>
         <module>jmh-suite</module>
     </modules>
