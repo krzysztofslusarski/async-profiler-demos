@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 class ClassesController {
     private final ClassesService classesService;
 
-    @GetMapping("/")
+    @GetMapping
     String doLeak() {
         classesService.doLeak();
         return "OK";
